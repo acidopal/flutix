@@ -15,14 +15,14 @@ class MoviePage extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               )),
           padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
-          child: CubitBuilder<UserCubit, UserState>(
+          child: BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
               if (state is UserLoadedState) {
                 if (imageFileToUpload != null) {
                   uploadImage(imageFileToUpload).then((downloadURL) {
                     imageFileToUpload = null;
                     context
-                        .cubit<UserCubit>()
+                        .bloc<UserCubit>()
                         .updateData(profileImage: downloadURL);
                   });
                 }
@@ -100,7 +100,7 @@ class MoviePage extends StatelessWidget {
         ),
         SizedBox(
           height: 140,
-          child: CubitBuilder<MovieCubit, MovieState>(
+          child: BlocBuilder<MovieCubit, MovieState>(
             builder: (context, state) {
               if (state is MovieLoadedState) {
                 List<Movie> movies = state.movies.sublist(0, 10);
@@ -114,7 +114,7 @@ class MoviePage extends StatelessWidget {
                         right:
                             (index == movies.length - 1) ? defaultMargin : 16),
                     child: MovieCard(movies[index], onTap: () {
-                      context.cubit<PageCubit>().goToMovieDetail(movies[index]);
+                      context.bloc<PageCubit>().goToMovieDetail(movies[index]);
                     }),
                   ),
                 );
@@ -135,9 +135,9 @@ class MoviePage extends StatelessWidget {
               style: blackTextFont.copyWith(
                   fontSize: 18, fontWeight: FontWeight.bold)),
         ),
-        CubitBuilder<UserCubit, UserState>(
+        BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
-             if (state is UserLoadedState) {
+            if (state is UserLoadedState) {
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Row(
@@ -168,7 +168,7 @@ class MoviePage extends StatelessWidget {
         ),
         SizedBox(
           height: 140,
-          child: CubitBuilder<MovieCubit, MovieState>(
+          child: BlocBuilder<MovieCubit, MovieState>(
             builder: (context, state) {
               if (state is MovieLoadedState) {
                 List<Movie> movies = state.movies.sublist(10);

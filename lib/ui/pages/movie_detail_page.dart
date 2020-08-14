@@ -12,7 +12,7 @@ class MovieDetailPage extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        context.cubit<PageCubit>().goToMainPage();
+        context.bloc<PageCubit>().goToMainPage();
 
         return;
       },
@@ -76,7 +76,7 @@ class MovieDetailPage extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.04)),
                               child: GestureDetector(
                                 onTap: () {
-                                  context.cubit<PageCubit>().goToMainPage();
+                                  context.bloc<PageCubit>().goToMainPage();
                                 },
                                 child: Icon(
                                   Icons.arrow_back,
@@ -144,15 +144,15 @@ class MovieDetailPage extends StatelessWidget {
                                       scrollDirection: Axis.horizontal,
                                       itemCount: credits.length,
                                       itemBuilder: (_, index) => Container(
-                                            margin: EdgeInsets.only(
-                                                left: (index == 0)
-                                                    ? defaultMargin
-                                                    : 0,
-                                                right: (index ==
-                                                        credits.length - 1)
-                                                    ? defaultMargin
-                                                    : 16),
-                                         child: CreditCard(credits[index]))),
+                                          margin: EdgeInsets.only(
+                                              left: (index == 0)
+                                                  ? defaultMargin
+                                                  : 0,
+                                              right:
+                                                  (index == credits.length - 1)
+                                                      ? defaultMargin
+                                                      : 16),
+                                          child: CreditCard(credits[index]))),
                                 );
                               } else {
                                 return SizedBox(
@@ -193,7 +193,9 @@ class MovieDetailPage extends StatelessWidget {
                               style: whiteTextFont.copyWith(fontSize: 16),
                             ),
                             onPressed: () {
-                              context.cubit<PageCubit>().goToSelectSchedulePage(movieDetail);
+                              context
+                                  .bloc<PageCubit>()
+                                  .goToSelectSchedulePage(movieDetail);
                             }),
                         SizedBox(height: defaultMargin)
                       ],

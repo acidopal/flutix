@@ -1,6 +1,5 @@
-export 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:bwa_flutix/models/models.dart';
-import 'package:cubit/cubit.dart';
 import 'package:equatable/equatable.dart';
 
 part 'page_state.dart';
@@ -36,15 +35,15 @@ class PageCubit extends Cubit<PageState> {
     emit(MovieDetailState(movie));
   }
 
-   void goToSelectSchedulePage(movieDetail) async {
+  void goToSelectSchedulePage(movieDetail) async {
     emit(SelectScheduleState(movieDetail));
   }
 
-   void goToSelectSeatPage(ticket) async {
+  void goToSelectSeatPage(ticket) async {
     emit(SelectSeatState(ticket));
   }
 
-   void goToCheckoutPage(ticket) async {
+  void goToCheckoutPage(ticket) async {
     emit(CheckoutState(ticket));
   }
 

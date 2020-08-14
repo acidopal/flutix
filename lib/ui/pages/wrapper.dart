@@ -8,19 +8,19 @@ class Wrapper extends StatelessWidget {
     if (firebaseUser == null) {
       if (!(prevPageState is SplashState)) {
         prevPageState = SplashState();
-        context.cubit<PageCubit>().goToSplashPage();
+        context.bloc<PageCubit>().goToSplashPage();
       }
     } else {
       if (!(prevPageState is MainState)) {
-        context.cubit<UserCubit>().loadUser(firebaseUser.uid);
-        context.cubit<TicketCubit>().getTicket(firebaseUser.uid);
+        context.bloc<UserCubit>().loadUser(firebaseUser.uid);
+        context.bloc<TicketCubit>().getTicket(firebaseUser.uid);
 
         prevPageState = MainState();
-        context.cubit<PageCubit>().goToMainPage();
+        context.bloc<PageCubit>().goToMainPage();
       }
     }
 
-    return CubitBuilder<PageCubit, PageState>(builder: (context, state) {
+    return BlocBuilder<PageCubit, PageState>(builder: (context, state) {
       if (state is SplashState) {
         return SplashPage();
       } else if (state is LoginState) {
@@ -44,11 +44,12 @@ class Wrapper extends StatelessWidget {
       } else if (state is OnTicketDetailState) {
         return TicketDetailPage(state.ticket);
       } else if (state is MainState) {
-        return MainPage(bottomNavBarIndex: state.bottomNavBarIndex, isExpired: state.isExpired);
+        return MainPage(
+            bottomNavBarIndex: state.bottomNavBarIndex,
+            isExpired: state.isExpired);
       } else {
         return Container();
       }
     });
   }
 }
-  

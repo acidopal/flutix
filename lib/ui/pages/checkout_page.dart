@@ -16,7 +16,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     return WillPopScope(
         onWillPop: () async {
-          context.cubit<PageCubit>().goToSelectSeatPage(widget.ticket);
+          context.bloc<PageCubit>().goToSelectSeatPage(widget.ticket);
           return;
         },
         child: Scaffold(
@@ -43,7 +43,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             child: GestureDetector(
                               onTap: () {
                                 context
-                                    .cubit<PageCubit>()
+                                    .bloc<PageCubit>()
                                     .goToSelectSeatPage(widget.ticket);
                               },
                               child: Icon(
@@ -54,7 +54,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           )
                         ],
                       ),
-                      CubitBuilder<UserCubit, UserState>(
+                      BlocBuilder<UserCubit, UserState>(
                         builder: (_, state) {
                           User user = (state as UserLoadedState).user;
 
@@ -384,7 +384,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                     .movieDetail.posterPath);
 
                                         context
-                                            .cubit<PageCubit>()
+                                            .bloc<PageCubit>()
                                             .goToSuccesPage(
                                                 widget.ticket.copyWith(
                                                     totalPrice: total),

@@ -25,7 +25,7 @@ class _TicketPageState extends State<TicketPage> {
       body: Stack(
         children: <Widget>[
           //note : Content
-          CubitBuilder<TicketCubit, TicketState>(builder: (context, state) {
+          BlocBuilder<TicketCubit, TicketState>(builder: (context, state) {
             if (state is MyTicketState) {
               return Container(
                   margin: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -171,7 +171,7 @@ class TicketViewer extends StatelessWidget {
         itemBuilder: (_, index) => GestureDetector(
               onTap: () {
                 context
-                    .cubit<PageCubit>()
+                    .bloc<PageCubit>()
                     .goToTicketDetailPage(sortedTickets[index]);
               },
               child: Container(

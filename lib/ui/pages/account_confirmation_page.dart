@@ -17,7 +17,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.cubit<PageCubit>().goToPreferencePage(widget.registrationData);
+        context.bloc<PageCubit>().goToPreferencePage(widget.registrationData);
         return;
       },
       child: Scaffold(
@@ -37,7 +37,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           alignment: Alignment.centerLeft,
                           child: GestureDetector(
                             onTap: () {
-                              context.cubit<PageCubit>().goToSplashPage();
+                              context.bloc<PageCubit>().goToSplashPage();
                             },
                             child: Icon(Icons.arrow_back, color: Colors.black),
                           ),

@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
             children: <Widget>[
               MoviePage(),
               TicketPage(
-                 isExpiredTicket: widget.isExpired,
+                isExpiredTicket: widget.isExpired,
               ),
             ],
           ),
@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   onPressed: () {
-                    context.cubit<UserCubit>().signOut();
+                    context.bloc<UserCubit>().signOut();
                     AuthServices.signOut();
                     Navigator.push(
                       context,

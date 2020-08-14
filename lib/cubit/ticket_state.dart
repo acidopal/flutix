@@ -10,7 +10,7 @@ class TicketInitial extends TicketState {
 }
 
 class MyTicketState extends TicketState {
- final List<Ticket> tickets;
+  final List<Ticket> tickets;
 
   const MyTicketState(this.tickets);
 
@@ -23,7 +23,7 @@ class BuyTicket extends TicketState {
   final String userID;
 
   BuyTicket(this.ticket, this.userID);
-  
+
   @override
   List<Object> get props => [ticket, userID];
 }

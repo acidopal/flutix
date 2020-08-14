@@ -43,7 +43,9 @@ class SplashPage extends StatelessWidget {
                   ),
                   color: mainColor,
                   onPressed: () {
-                    context.cubit<PageCubit>().goToRegistrationPage(RegistrationData());
+                    context
+                        .bloc<PageCubit>()
+                        .goToRegistrationPage(RegistrationData());
                   },
                 ),
               ),
@@ -56,7 +58,7 @@ class SplashPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.cubit<PageCubit>().goToLoginPage();
+                      context.bloc<PageCubit>().goToLoginPage();
                     },
                     child: Text(
                       "Sign In ",

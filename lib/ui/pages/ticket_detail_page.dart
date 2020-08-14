@@ -14,7 +14,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          context.cubit<PageCubit>().goToMainPage(
+          context.bloc<PageCubit>().goToMainPage(
               bottomNavBarIndex: 1,
               isExpired: widget.ticket.time.isBefore(DateTime.now()));
           return;
@@ -33,7 +33,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: GestureDetector(
-                        onTap: () => context.cubit<PageCubit>().goToMainPage(
+                        onTap: () => context.bloc<PageCubit>().goToMainPage(
                             bottomNavBarIndex: 1,
                             isExpired:
                                 widget.ticket.time.isBefore(DateTime.now())),

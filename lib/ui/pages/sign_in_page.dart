@@ -16,12 +16,12 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     context
-        .cubit<ThemeCubit>()
+        .bloc<ThemeCubit>()
         .changeTheme(ThemeData().copyWith(primaryColor: accentColor2));
 
     return WillPopScope(
       onWillPop: () {
-        context.cubit<PageCubit>().goToSplashPage();
+        context.bloc<PageCubit>().goToSplashPage();
         return;
       },
       child: Scaffold(
@@ -153,8 +153,10 @@ class _SignInPageState extends State<SignInPage> {
                             greyTextFont.copyWith(fontWeight: FontWeight.w400),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          context.cubit<PageCubit>().goToRegistrationPage(RegistrationData());
+                        onTap: () {
+                          context
+                              .bloc<PageCubit>()
+                              .goToRegistrationPage(RegistrationData());
                         },
                         child: Text(
                           "Sign Up",

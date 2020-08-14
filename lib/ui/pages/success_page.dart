@@ -72,7 +72,7 @@ class SuccessPage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                context.cubit<PageCubit>().goToMainPage();
+                                context.bloc<PageCubit>().goToMainPage();
                               },
                               child: Text(
                                 "Back to Home",
@@ -93,8 +93,8 @@ class SuccessPage extends StatelessWidget {
   }
 
   Future<void> processingTicketOrder(BuildContext context) async {
-    context.cubit<UserCubit>().purchase(ticket.totalPrice);
-    context.cubit<TicketCubit>().buyTicket(transaction.userID, ticket);
+    context.bloc<UserCubit>().purchase(ticket.totalPrice);
+    context.bloc<TicketCubit>().buyTicket(transaction.userID, ticket);
 
     await FlutixTransactionServices.saveTransaction(transaction);
   }

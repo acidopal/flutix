@@ -1,6 +1,6 @@
+import 'package:bloc/bloc.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:bwa_flutix/services/services.dart';
-import 'package:cubit/cubit.dart';
 import 'package:equatable/equatable.dart';
 
 part 'ticket_state.dart';
@@ -10,7 +10,7 @@ class TicketCubit extends Cubit<TicketState> {
 
   void buyTicket(userID, ticket) async {
     await TicketServices.saveTicket(userID, ticket);
-    
+
     List<Ticket> tickets = ticket + [ticket];
 
     emit(MyTicketState(tickets));
@@ -21,5 +21,4 @@ class TicketCubit extends Cubit<TicketState> {
 
     emit(MyTicketState(tickets));
   }
-
 }

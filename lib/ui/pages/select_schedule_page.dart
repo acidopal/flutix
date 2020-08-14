@@ -28,7 +28,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.cubit<PageCubit>().goToMovieDetail(widget.movieDetail);
+          context.bloc<PageCubit>().goToMovieDetail(widget.movieDetail);
           return;
         },
         child: Scaffold(
@@ -52,7 +52,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                         child: GestureDetector(
                           onTap: () {
                             context
-                                .cubit<PageCubit>()
+                                .bloc<PageCubit>()
                                 .goToMovieDetail(widget.movieDetail);
                           },
                           child: Icon(
@@ -103,7 +103,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ),
                   Align(
                       alignment: Alignment.topCenter,
-                      child: CubitBuilder<UserCubit, UserState>(
+                      child: BlocBuilder<UserCubit, UserState>(
                         builder: (_, state) => FloatingActionButton(
                             elevation: 0,
                             backgroundColor:
@@ -113,7 +113,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                               color: isValid ? Colors.white : Color(0xFFBEBEBE),
                             ),
                             onPressed: () {
-                              context.cubit<PageCubit>().goToSelectSeatPage(
+                              context.bloc<PageCubit>().goToSelectSeatPage(
                                   Ticket(
                                       widget.movieDetail,
                                       selectedTheater,

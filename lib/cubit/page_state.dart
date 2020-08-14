@@ -110,4 +110,3 @@ class OnTicketDetailState extends PageState {
   @override
   List<Object> get props => [ticket];
 }
-

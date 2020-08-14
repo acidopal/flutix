@@ -17,7 +17,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
     return WillPopScope(
         onWillPop: () async {
           context
-              .cubit<PageCubit>()
+              .bloc<PageCubit>()
               .goToSelectSchedulePage(widget.ticket.movieDetail);
           return;
         },
@@ -111,7 +111,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           ),
                           onPressed: selectedSeats.length > 0
                               ? () {
-                                  context.cubit<PageCubit>().goToCheckoutPage(
+                                  context.bloc<PageCubit>().goToCheckoutPage(
                                       widget.ticket
                                           .copyWith(seats: selectedSeats));
                                 }

@@ -11,7 +11,7 @@ class UserInitial extends UserState {
 
 class UserLoadedState extends UserState {
   final User user;
-  
+
   UserLoadedState(this.user);
 
   @override
@@ -58,4 +58,3 @@ class PurchaseState extends UserState {
   @override
   List<Object> get props => [amount];
 }
-

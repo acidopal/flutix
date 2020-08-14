@@ -26,11 +26,11 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     context
-        .cubit<ThemeCubit>()
+        .bloc<ThemeCubit>()
         .changeTheme(ThemeData().copyWith(primaryColor: accentColor1));
     return WillPopScope(
       onWillPop: () async {
-        context.cubit<PageCubit>().goToSplashPage();
+        context.bloc<PageCubit>().goToSplashPage();
 
         return;
       },
@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           alignment: Alignment.centerLeft,
                           child: GestureDetector(
                             onTap: () =>
-                                context.cubit<PageCubit>().goToSplashPage(),
+                                context.bloc<PageCubit>().goToSplashPage(),
                             child: Icon(Icons.arrow_back, color: Colors.black),
                           ),
                         ),
@@ -160,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: Icon(Icons.arrow_forward),
                       backgroundColor: mainColor,
                       elevation: 0,
-                       onPressed: () {
+                      onPressed: () {
                         if (!(nameController.text.trim() != "" &&
                             emailController.text.trim() != "" &&
                             passwordController.text.trim() != "" &&
@@ -200,8 +200,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           widget.registrationData.password =
                               passwordController.text;
 
-                        //  context.cubit<PageCubit>().goToPreferencePage(widget.registrationData);
-                            context.cubit<PageCubit>().goToPreferencePage(widget.registrationData);
+                          //  context.bloc<PageCubit>().goToPreferencePage(widget.registrationData);
+                          context
+                              .bloc<PageCubit>()
+                              .goToPreferencePage(widget.registrationData);
                         }
                       }),
                 ],
