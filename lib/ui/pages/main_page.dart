@@ -17,42 +17,40 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    bottomNavBarIndex =
+        ((widget.bottomNavBarIndex == null) ? 0 : widget.bottomNavBarIndex);
 
-    bottomNavBarIndex = widget.bottomNavBarIndex;
     pageController = PageController(initialPage: bottomNavBarIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7F9),
       body: Stack(
         children: <Widget>[
           Container(
             color: accentColor1,
-            //warnain statusbar
           ),
           SafeArea(
-            child: Container(
-              color: Color(0xFFF6F7F9),
-            ),
-          ),
+              child: Container(
+            color: Color(0xFFF6F7F9),
+          )),
           PageView(
             controller: pageController,
             onPageChanged: (index) {
               setState(() {
                 bottomNavBarIndex = index;
-                pageController.jumpToPage(index);
               });
             },
             children: <Widget>[
               MoviePage(),
               TicketPage(
-                isExpiredTicket: widget.isExpired,
+                isExpiredTicket:
+                    ((widget.isExpired == null) ? false : widget.isExpired),
               ),
             ],
           ),
-          createCustomBottomNavbar(),
+          createCustomBottomNavBar(),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -73,24 +71,15 @@ class _MainPageState extends State<MainPage> {
                   onPressed: () {
                     context.bloc<UserCubit>().signOut();
                     AuthServices.signOut();
-                    Navigator.push(
-                      context,
-                      AwesomePageRoute(
-                        transitionDuration: Duration(milliseconds: 600),
-                        exitPage: widget,
-                        enterPage: SplashPage(),
-                        transition: CubeTransition(),
-                      ),
-                    );
                   }),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
-  Widget createCustomBottomNavbar() => Align(
+  Widget createCustomBottomNavBar() => Align(
         alignment: Alignment.bottomCenter,
         child: ClipPath(
           clipper: BottomNavBarClipper(),
@@ -99,9 +88,8 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                )),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
             child: BottomNavigationBar(
                 elevation: 0,
                 backgroundColor: Colors.transparent,

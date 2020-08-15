@@ -9,7 +9,7 @@ class UserServices {
     for (var genre in user.selectedGenres) {
       genres += genre + ((genre == user.selectedGenres.last) ? ',' : '');
     }
-    
+
     _userCollection.document(user.id).setData({
       'email': user.email,
       'name': user.name,

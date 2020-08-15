@@ -19,6 +19,11 @@ class SplashState extends PageState {
   List<Object> get props => [];
 }
 
+class ProfileState extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class MainState extends PageState {
   final int bottomNavBarIndex;
   final bool isExpired;
@@ -109,4 +114,13 @@ class OnTicketDetailState extends PageState {
 
   @override
   List<Object> get props => [ticket];
+}
+
+class EditProfileState extends PageState {
+  final User user;
+
+  EditProfileState(this.user);
+
+  @override
+  List<Object> get props => [user];
 }

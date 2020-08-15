@@ -29,7 +29,7 @@ class AuthServices {
           email: email, password: password);
 
       User user = await result.user.fromFireStore();
-    
+
       return SignInSignUpResult(user: user);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(',')[1].trim());
@@ -38,6 +38,10 @@ class AuthServices {
 
   static Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  static Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 
   static Stream<FirebaseUser> get userStream => _auth.onAuthStateChanged;

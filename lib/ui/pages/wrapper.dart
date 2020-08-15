@@ -18,6 +18,10 @@ class Wrapper extends StatelessWidget {
         prevPageState = MainState();
         context.bloc<PageCubit>().goToMainPage();
       }
+      // if (!(prevPageState is SplashState)) {
+      //   prevPageState = SplashState();
+      //   context.bloc<PageCubit>().goToSplashPage();
+      // }
     }
 
     return BlocBuilder<PageCubit, PageState>(builder: (context, state) {
@@ -25,6 +29,8 @@ class Wrapper extends StatelessWidget {
         return SplashPage();
       } else if (state is LoginState) {
         return SignInPage();
+      } else if (state is ProfileState) {
+        return ProfilePage();
       } else if (state is RegistrationState) {
         return SignUpPage(state.registrationData);
       } else if (state is PreferenceState) {
@@ -43,6 +49,8 @@ class Wrapper extends StatelessWidget {
         return SuccessPage(state.ticket, state.transaction);
       } else if (state is OnTicketDetailState) {
         return TicketDetailPage(state.ticket);
+      } else if (state is EditProfileState) {
+        return EditProfilePage(state.user);
       } else if (state is MainState) {
         return MainPage(
             bottomNavBarIndex: state.bottomNavBarIndex,

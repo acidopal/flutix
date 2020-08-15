@@ -15,6 +15,10 @@ class PageCubit extends Cubit<PageState> {
     emit(SplashState());
   }
 
+  void goToProfilePage() async {
+    emit(ProfileState());
+  }
+
   void goToMainPage({bottomNavBarIndex, isExpired}) async {
     emit(MainState(bottomNavBarIndex: bottomNavBarIndex, isExpired: isExpired));
   }
@@ -53,5 +57,9 @@ class PageCubit extends Cubit<PageState> {
 
   void goToTicketDetailPage(ticket) async {
     emit(OnTicketDetailState(ticket));
+  }
+
+  void goToEditProfilePage(user) async {
+    emit(EditProfileState(user));
   }
 }

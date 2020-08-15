@@ -382,7 +382,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                 amount: -total,
                                                 picture: widget.ticket
                                                     .movieDetail.posterPath);
-
                                         context
                                             .bloc<PageCubit>()
                                             .goToSuccesPage(

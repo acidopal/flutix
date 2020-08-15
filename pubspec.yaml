@@ -38,6 +38,7 @@ dependencies:
   http: ^0.12.1
   random_string: ^2.1.0
   awesome_page_transitions: ^1.0.0
+  qr_flutter: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +46,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -79,3 +79,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
