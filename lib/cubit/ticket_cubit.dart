@@ -8,15 +8,15 @@ part 'ticket_state.dart';
 class TicketCubit extends Cubit<TicketState> {
   TicketCubit() : super(TicketInitial());
 
-  void buyTicket(userID, ticket) async {
-    await TicketServices.saveTicket(userID, ticket);
+  void buyTicket(Ticket ticket, String userID) async {
+    await TicketServices.saveTicket(ticket, userID);
 
-    List<Ticket> tickets = ticket + [ticket];
+    List<Ticket> tickets = await TicketServices.getTickets(userID);
 
     emit(MyTicketState(tickets));
   }
 
-  void getTicket(userID) async {
+  void getTicket(String userID) async {
     List<Ticket> tickets = await TicketServices.getTickets(userID);
 
     emit(MyTicketState(tickets));

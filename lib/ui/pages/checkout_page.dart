@@ -390,6 +390,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                 transaction);
                                       } else {
                                         // # Uang tidak cukup
+                                        context.bloc<PageCubit>().goToTopUpPage(
+                                            CheckoutState(widget.ticket
+                                                .copyWith(totalPrice: total)));
                                       }
                                     }),
                               )

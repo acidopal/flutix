@@ -8,7 +8,7 @@ part 'user_state.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
 
-  void loadUser(id) async {
+  void loadUser(String id) async {
     emit(LoadUserState(id));
     User user = await UserServices.getUser(id);
     emit(UserLoadedState(user));
@@ -28,17 +28,17 @@ class UserCubit extends Cubit<UserState> {
     emit(UserLoadedState(userUpdate));
   }
 
-  void topUp(userUpdate, amount) async {
+  void topUp(String userUpdate, int amount) async {
     User updatedUser = (state as UserLoadedState)
         .user
         .copyWith(balance: (state as UserLoadedState).user.balance + amount);
 
     await UserServices.updateUser(updatedUser);
 
-    emit(UserLoadedState(userUpdate));
+    emit(UserLoadedState(updatedUser));
   }
 
-  void purchase(amount) async {
+  void purchase(int amount) async {
     User updatedUser = (state as UserLoadedState)
         .user
         .copyWith(balance: (state as UserLoadedState).user.balance - amount);

@@ -124,3 +124,21 @@ class EditProfileState extends PageState {
   @override
   List<Object> get props => [user];
 }
+
+class TopUpState extends PageState {
+  final PageState pageState;
+
+  TopUpState(this.pageState);
+
+  @override
+  List<Object> get props => [pageState];
+}
+
+class WalletState extends PageState {
+  final PageState pageState;
+
+  WalletState(this.pageState);
+
+  @override
+  List<Object> get props => [pageState];
+}

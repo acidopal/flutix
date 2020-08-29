@@ -21,9 +21,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: ListView(
                   children: <Widget>[
                     BlocBuilder<UserCubit, UserState>(
-                      builder: (_, userState) {
-                        if (userState is UserLoadedState) {
-                          User user = userState.user;
+                      builder: (context, state) {
+                        if (state is UserLoadedState) {
+                          User user = state.user;
 
                           return Column(
                             children: <Widget>[
@@ -91,12 +91,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         BlocBuilder<UserCubit, UserState>(
-                          builder: (_, userState) => GestureDetector(
+                          builder: (context, state) => GestureDetector(
                             onTap: () {
                               context.bloc<PageCubit>().goToEditProfilePage(
-                                  (UserState as UserLoadedState).user);
-                              // context.bloc<PageCubit>().add(GoToEditProfilePage(
-                              //     (userState as UserLoaded).user));
+                                  (state as UserLoadedState).user);
                             },
                             child: Row(
                               children: <Widget>[
@@ -124,7 +122,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            context.bloc<PageCubit>().goToProfilePage();
+                            context
+                                .bloc<PageCubit>()
+                                .goToWalletPage(ProfileState());
                           },
                           child: Row(
                             children: <Widget>[

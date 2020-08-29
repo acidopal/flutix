@@ -19,47 +19,55 @@ class PageCubit extends Cubit<PageState> {
     emit(ProfileState());
   }
 
-  void goToMainPage({bottomNavBarIndex, isExpired}) async {
+  void goToMainPage({int bottomNavBarIndex, bool isExpired}) async {
     emit(MainState(bottomNavBarIndex: bottomNavBarIndex, isExpired: isExpired));
   }
 
-  void goToRegistrationPage(registrationData) async {
+  void goToRegistrationPage(RegistrationData registrationData) async {
     emit(RegistrationState(registrationData));
   }
 
-  void goToPreferencePage(registrationData) async {
+  void goToPreferencePage(RegistrationData registrationData) async {
     emit(PreferenceState(registrationData));
   }
 
-  void goToAccountConfirmationPage(registrationData) async {
+  void goToAccountConfirmationPage(RegistrationData registrationData) async {
     emit(AccountConfirmationState(registrationData));
   }
 
-  void goToMovieDetail(movie) async {
+  void goToMovieDetail(Movie movie) async {
     emit(MovieDetailState(movie));
   }
 
-  void goToSelectSchedulePage(movieDetail) async {
+  void goToSelectSchedulePage(MovieDetail movieDetail) async {
     emit(SelectScheduleState(movieDetail));
   }
 
-  void goToSelectSeatPage(ticket) async {
+  void goToSelectSeatPage(Ticket ticket) async {
     emit(SelectSeatState(ticket));
   }
 
-  void goToCheckoutPage(ticket) async {
+  void goToCheckoutPage(Ticket ticket) async {
     emit(CheckoutState(ticket));
   }
 
-  void goToSuccesPage(ticket, transaction) async {
+  void goToSuccesPage(Ticket ticket, FlutixTransaction transaction) async {
     emit(OnSuccessState(ticket, transaction));
   }
 
-  void goToTicketDetailPage(ticket) async {
+  void goToTicketDetailPage(Ticket ticket) async {
     emit(OnTicketDetailState(ticket));
   }
 
-  void goToEditProfilePage(user) async {
+  void goToEditProfilePage(User user) async {
     emit(EditProfileState(user));
+  }
+
+  void goToTopUpPage(PageState pageState) async {
+    emit(TopUpState(pageState));
+  }
+
+  void goToWalletPage(PageState pageState) async {
+    emit(WalletState(pageState));
   }
 }

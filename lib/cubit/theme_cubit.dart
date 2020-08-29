@@ -7,7 +7,7 @@ part 'theme_state.dart';
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeInitial());
 
-  void changeTheme(themeData) async {
+  void changeTheme(ThemeData themeData) async {
     emit(ChangeThemeState(themeData));
   }
 }

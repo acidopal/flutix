@@ -69,8 +69,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   onPressed: () {
-                    context.bloc<UserCubit>().signOut();
-                    AuthServices.signOut();
+                    context.bloc<PageCubit>().goToTopUpPage(MainState());
                   }),
             ),
           )

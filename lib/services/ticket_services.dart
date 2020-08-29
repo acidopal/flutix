@@ -4,7 +4,7 @@ class TicketServices {
   static CollectionReference ticketCollection =
       Firestore.instance.collection('tickets');
 
-  static Future<void> saveTicket(String id, Ticket ticket) async {
+  static Future<void> saveTicket(Ticket ticket, String id) async {
     await ticketCollection.document().setData({
       'movieID': ticket.movieDetail.id ?? "",
       'userID': id ?? "",
@@ -25,8 +25,8 @@ class TicketServices {
 
     List<Ticket> tickets = [];
     for (var document in documents) {
-      MovieDetail movieDetail =
-          await MovieServices.getDetails(null, movieID: document.data['movieID']);
+      MovieDetail movieDetail = await MovieServices.getDetails(null,
+          movieID: document.data['movieID']);
       tickets.add(Ticket(
           movieDetail,
           Theater(document.data['theaterName']),

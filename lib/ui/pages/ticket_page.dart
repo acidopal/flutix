@@ -28,16 +28,17 @@ class _TicketPageState extends State<TicketPage> {
           BlocBuilder<TicketCubit, TicketState>(builder: (context, state) {
             if (state is MyTicketState) {
               return Container(
-                  margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                  child: TicketViewer(isExpiredTickets
-                      ? state.tickets
-                          .where(
-                              (ticket) => ticket.time.isBefore(DateTime.now()))
-                          .toList()
-                      : state.tickets
-                          .where(
-                              (ticket) => !ticket.time.isBefore(DateTime.now()))
-                          .toList()));
+                padding: EdgeInsets.only(bottom: 100),
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: TicketViewer(isExpiredTickets
+                    ? state.tickets
+                        .where((ticket) => ticket.time.isBefore(DateTime.now()))
+                        .toList()
+                    : state.tickets
+                        .where(
+                            (ticket) => !ticket.time.isBefore(DateTime.now()))
+                        .toList()),
+              );
             } else {
               return SpinKitFadingCircle(
                 color: mainColor,

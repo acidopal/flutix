@@ -1,12 +1,33 @@
 part of 'pages.dart';
 
-class MoviePage extends StatelessWidget {
+class MoviePage extends StatelessWidget with TickerProviderStateMixin {
+  AnimationController headerMovie;
+  Animation<double> headerMovieTween;
+  SingleTickerProviderStateMixin vsync;
+
+  void initializeAnimation() {
+    // initialize dateSelector Background
+    headerMovie =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 700));
+    headerMovieTween = Tween<double>(begin: 1000, end: 0)
+        .chain(CurveTween(curve: Curves.easeOutCubic))
+        .animate(headerMovie);
+    Future.delayed(Duration(milliseconds: 150), () {
+      headerMovie.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    headerMovie.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       //header
       children: <Widget>[
-        // note : Header Movie
         Container(
           decoration: BoxDecoration(
               color: accentColor1,
@@ -75,14 +96,21 @@ class MoviePage extends StatelessWidget {
                             overflow: TextOverflow.clip,
                           ),
                         ),
-                        Text(
-                          NumberFormat.currency(
-                                  locale: "id_ID",
-                                  decimalDigits: 0,
-                                  symbol: "IDR ")
-                              .format(state.user.balance),
-                          style: yellowNumberFont.copyWith(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .bloc<PageCubit>()
+                                .goToWalletPage(MainState());
+                          },
+                          child: Text(
+                            NumberFormat.currency(
+                                    locale: "id_ID",
+                                    decimalDigits: 0,
+                                    symbol: "IDR ")
+                                .format(state.user.balance),
+                            style: yellowNumberFont.copyWith(
+                                fontSize: 14, fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ],
                     ),

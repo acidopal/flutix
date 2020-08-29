@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:168613150604:android:dfd801923f79e3069520a9",
+        "mobilesdk_app_id": "1:168613150604:android:cbf2e79174b1099f9520a9",
         "android_client_info": {
-          "package_name": "com.example.bwa_flutix"
+          "package_name": "com.opal.flutix"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "168613150604-b1uiacmp078v37en4cep2fvlm284dm2i.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "168613150604-pkn65kfe7fgt9fa6sshd1rao6homj503.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.opal.flutix"
+              }
             }
           ]
         }

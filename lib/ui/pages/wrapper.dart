@@ -18,10 +18,6 @@ class Wrapper extends StatelessWidget {
         prevPageState = MainState();
         context.bloc<PageCubit>().goToMainPage();
       }
-      // if (!(prevPageState is SplashState)) {
-      //   prevPageState = SplashState();
-      //   context.bloc<PageCubit>().goToSplashPage();
-      // }
     }
 
     return BlocBuilder<PageCubit, PageState>(builder: (context, state) {
@@ -51,10 +47,14 @@ class Wrapper extends StatelessWidget {
         return TicketDetailPage(state.ticket);
       } else if (state is EditProfileState) {
         return EditProfilePage(state.user);
+      } else if (state is TopUpState) {
+        return TopUpPage(state.pageState);
+      } else if (state is WalletState) {
+        return WalletPage(state.pageState);
       } else if (state is MainState) {
         return MainPage(
-            bottomNavBarIndex: state.bottomNavBarIndex,
-            isExpired: state.isExpired);
+            bottomNavBarIndex: (state as MainState).bottomNavBarIndex,
+            isExpired: (state as MainState).isExpired);
       } else {
         return Container();
       }

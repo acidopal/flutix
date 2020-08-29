@@ -1,4 +1,4 @@
-package com.example.bwa_flutix
+package com.opal.flutix;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

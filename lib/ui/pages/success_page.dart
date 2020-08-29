@@ -16,7 +16,7 @@ class SuccessPage extends StatelessWidget {
           body: FutureBuilder(
               future: ticket != null
                   ? processingTicketOrder(context)
-                  : processingTopUp(),
+                  : processingTopUp(context),
               builder: (_, snapshot) => (snapshot.connectionState ==
                       ConnectionState.done)
                   ? Column(
@@ -60,7 +60,17 @@ class SuccessPage extends StatelessWidget {
                                 (ticket == null) ? "My Wallet" : "My Tickets",
                                 style: whiteTextFont.copyWith(fontSize: 16),
                               ),
-                              onPressed: () {}),
+                              onPressed: () {
+                                if (ticket == null) {
+                                  context
+                                      .bloc<PageCubit>()
+                                      .goToWalletPage(MainState());
+                                } else {
+                                  context
+                                      .bloc<PageCubit>()
+                                      .goToMainPage(bottomNavBarIndex: 1);
+                                }
+                              }),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -94,10 +104,14 @@ class SuccessPage extends StatelessWidget {
 
   Future<void> processingTicketOrder(BuildContext context) async {
     context.bloc<UserCubit>().purchase(ticket.totalPrice);
-    context.bloc<TicketCubit>().buyTicket(transaction.userID, ticket);
+    context.bloc<TicketCubit>().buyTicket(ticket, transaction.userID);
 
     await FlutixTransactionServices.saveTransaction(transaction);
   }
 
-  Future<void> processingTopUp() async {}
+  Future<void> processingTopUp(BuildContext context) async {
+    context.bloc<UserCubit>().topUp(transaction.userID, transaction.amount);
+
+    await FlutixTransactionServices.saveTransaction(transaction);
+  }
 }
